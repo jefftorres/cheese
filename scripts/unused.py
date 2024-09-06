@@ -38,3 +38,16 @@ print('a')
 #     integrality=1
 # )
 # print(result)
+
+' Iteraciones para optimizar con pymoo, con cada centro de acopio como el principal'
+# for iteration in range(N):
+#     model.ca_principal = iteration
+#
+#     res = minimize(model,
+#                    algorithm,
+#                    seed=1,
+#                    verbose=False)
+#
+#     print(f'===========> Centro de acopio principal: {params_df['Id_CA'].iloc[iteration]}')
+#     # print(f'F: {res.F}, \nX: {res.X}')
+#     print_acopios(res.X)
