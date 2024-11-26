@@ -4,12 +4,7 @@ import pandas as pd
 
 
 # Información que obtiene el modelo del sistema de información
-def model_data(files, folder='./data/'):
-    # ¿Cómo se obtienen estas variables desde el sistema de información?
-    demanda = 60
-    ctiempo = 100
-    t_max = 360
-
+def model_data(files, demanda, ctiempo, t_max=360, folder='./data/'):
     # Demanda
     d = demanda
     # Costo por unidad de tiempo
