@@ -136,3 +136,15 @@ def balance(vector, cap, delta, diff):
             else:
                 vector[idx] = cap[idx]
                 delta -= cap[idx]
+
+
+# Crea una tabla que muestra la asignación de cantidades asignadas por centro de acopio (stock/potencial)
+def alloc_df(x, params_df, n, cap):
+    ca_df = pd.DataFrame(np.repeat(params_df, [2], axis=0))[0].rename('CAcopio')
+    ca_df.loc[ca_df.reset_index().index % 2 == 0] = ca_df + ' Stock'
+    ca_df.loc[ca_df.reset_index().index % 2 == 1] = ca_df + ' Potencial'
+    ca_df = ca_df.reset_index()
+
+    ca_df.insert(2, 'Capacidad', np.delete(cap, n*2))
+    ca_df.insert(3, 'Asignada', np.delete(x, n*2))
+    return ca_df
