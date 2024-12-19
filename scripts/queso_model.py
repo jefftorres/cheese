@@ -134,12 +134,22 @@ def balance(vector, cap, delta, diff):
 
 
 # Crea una tabla que muestra la asignación de cantidades asignadas por centro de acopio (stock/potencial)
-def alloc_df(x, params_df, n, cap):
-    ca_df = pd.DataFrame(np.repeat(params_df, [2], axis=0))[0].rename('CAcopio')
-    ca_df.loc[ca_df.reset_index().index % 2 == 0] = ca_df + ' Stock'
-    ca_df.loc[ca_df.reset_index().index % 2 == 1] = ca_df + ' Potencial'
-    ca_df = ca_df.reset_index()
+def alloc_df(x, params_df, n, cap, sto='Stock', pot='Potencial'):
+    x = np.delete(x, n*2)
+    cap = np.delete(cap, n*2)
+    size = len(x)
 
-    ca_df.insert(2, 'Capacidad', np.delete(cap, n*2))
-    ca_df.insert(3, 'Asignada', np.delete(x, n*2))
+    c_evens = np.take(cap, [idx for idx in range(0, size, 2)])
+    c_odds = np.take(cap, [idx for idx in range(1, size, 2)])
+    evens = np.take(x, [idx for idx in range(0, size, 2)])
+    odds = np.take(x, [idx for idx in range(1, size, 2)])
+
+    data_dict = {
+        'CAcopio': params_df['Id_CA'],
+        'C.Stock': c_evens,
+        sto: evens,
+        'C.Potencial': c_odds,
+        pot: odds,
+    }
+    ca_df = pd.DataFrame.from_dict(data_dict)
     return ca_df
