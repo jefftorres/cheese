@@ -35,7 +35,7 @@ and:
 $$
 \begin{align*}
     Costo_{CA_{apoyo}} = \sum_{i=0, i\neq p}^{N} &\left[ k(CA_i) \times Precio(CA_i) + CostoTransp(CA_i) + \\
-    & {TiempoTransp(CA_i) + TiempoAlistam(CA_i)} \times CostoTiempo \right] \\
+    & \{ TiempoTransp(CA_i) + TiempoAlistam(CA_i) \} \times CostoTiempo \right] \\
     i = [1,...,N], i \neq p
 \end{align*}
 $$
